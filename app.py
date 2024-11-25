@@ -46,7 +46,7 @@ def submit_contact():
     db.session.commit()
 
     flash("Mensagem enviada com sucesso!", "success")
-    return redirect(url_for("about"))
+    return redirect(url_for("contato"))
 
 @app.route("/test_db")
 def test_db():
