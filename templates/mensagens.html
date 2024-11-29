@@ -14,6 +14,7 @@
             <th>E-mail</th>
             <th>Assunto</th>
             <th>Mensagem</th>
+            <th>Data e Hora</th>
         </tr>
         {% for contato in contatos %}
         <tr>
@@ -22,6 +23,7 @@
             <td>{{ contato.email }}</td>
             <td>{{ contato.assunto }}</td>
             <td>{{ contato.mensagem }}</td>
+            <td>{{ contato.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}</td>
         </tr>
         {% endfor %}
     </table>

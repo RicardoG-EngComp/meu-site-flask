@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta'
@@ -18,6 +19,8 @@ class Contato(db.Model):
     email = db.Column(db.String(120), nullable=False)
     assunto = db.Column(db.String(150), nullable=False)
     mensagem = db.Column(db.Text, nullable=False)
+    data_hora = db.Column(db.Datetime, default=datetime.utcnow)
+
 
 # Criar tabelas no banco
 with app.app_context():
