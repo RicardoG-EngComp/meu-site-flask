@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import logging
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta'
@@ -38,19 +39,31 @@ def about():
 def contato():
     return render_template("contato.html")
 
+
 @app.route("/submit_contact", methods=["POST"])
 def submit_contact():
     nome = request.form["nome"]
     email = request.form["email"]
     assunto = request.form["assunto"]
     mensagem = request.form["mensagem"]
+    data_hora = datetime.utcnow()
+    
+    logging.info(f"Data e Hora: {data_hora}")  # Adiciona log para verificar o formato
 
-    novo_contato = Contato(nome=nome, email=email, assunto=assunto, mensagem=mensagem)
+    novo_contato = Contato(
+        nome=nome,
+        email=email,
+        assunto=assunto,
+        mensagem=mensagem,
+        data_hora=data_hora
+    )
     db.session.add(novo_contato)
     db.session.commit()
 
     flash("Mensagem enviada com sucesso!", "success")
     return redirect(url_for("contato"))
+
+
 
 @app.route("/test_db")
 def test_db():
@@ -62,6 +75,12 @@ def test_db():
 @app.route("/mensagens")
 def mensagens():
     contatos = Contato.query.all()
+
+    # Garante que nenhum campo `data_hora` seja None
+    for contato in contatos:
+        if not contato.data_hora:
+            contato.data_hora = datetime.utcnow()
+
     return render_template("mensagens.html", contatos=contatos)
 
 
