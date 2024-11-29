@@ -56,6 +56,16 @@ def test_db():
     db.session.commit()
     return "Teste adicionado com sucesso!"
 
+@app.route("/ver_mensagens", methods=["GET"])
+def ver_mensagens():
+    contatos = Contato.query.all()
+    mensagens = [
+        {"id": c.id, "nome": c.nome, "email": c.email, "assunto": c.assunto, "mensagem": c.mensagem}
+        for c in contatos
+    ]
+    return {"mensagens": mensagens}
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
