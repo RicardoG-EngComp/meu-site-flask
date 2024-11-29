@@ -4,13 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta'
 
-# Configuração do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# Configuração do Banco de Dados PostgreSQL
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://meu_site_db_user:Jo4vq2HbBtJr4avHRXsNm7X2NVAFN8IU@dpg-ct4l3u3qf0us73825fp0-a/meu_site_db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Modelo do banco de dados
+# Modelo do Banco de Dados
 class Contato(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(80), nullable=False)
@@ -18,7 +18,7 @@ class Contato(db.Model):
     assunto = db.Column(db.String(150), nullable=False)
     mensagem = db.Column(db.Text, nullable=False)
 
-# Cria as tabelas no banco de dados
+# Criar tabelas no banco
 with app.app_context():
     db.create_all()
 
