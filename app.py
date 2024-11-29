@@ -1,11 +1,12 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta'
 
-# Configuração do Banco de Dados PostgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://meu_site_db_user:Jo4vq2HbBtJr4avHRXsNm7X2NVAFN8IU@dpg-ct4l3u3qf0us73825fp0-a/meu_site_db"
+# Configuração do Banco de Dados PostgreSQL usando variável de ambiente
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -57,3 +58,4 @@ def test_db():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
