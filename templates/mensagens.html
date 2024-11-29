@@ -6,14 +6,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <td>
-        {% if contato.data_hora %}
-            {{ contato.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}
-        {% else %}
-            Não informado
-        {% endif %}
-    </td>
-    
     <h1>Mensagens Recebidas</h1>
     <table border="1">
         <tr>
@@ -31,9 +23,21 @@
             <td>{{ contato.email }}</td>
             <td>{{ contato.assunto }}</td>
             <td>{{ contato.mensagem }}</td>
-            <td>{{ contato.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+            <td>
+                {% if contato.data_hora %}
+                    {{ contato.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}
+                {% else %}
+                    Não informado
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">Nenhuma mensagem encontrada.</td>
         </tr>
         {% endfor %}
     </table>
 </body>
 </html>
+
+
