@@ -19,7 +19,7 @@ class Contato(db.Model):
     email = db.Column(db.String(120), nullable=False)
     assunto = db.Column(db.String(150), nullable=False)
     mensagem = db.Column(db.Text, nullable=False)
-    data_hora = db.Column(db.Datetime, default=datetime.utcnow)
+    data_hora = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 # Criar tabelas no banco
