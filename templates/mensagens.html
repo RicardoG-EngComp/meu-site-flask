@@ -6,38 +6,43 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Mensagens Recebidas</h1>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Assunto</th>
-            <th>Mensagem</th>
-            <th>Data e Hora</th>
-        </tr>
-        {% for contato in contatos %}
-        <tr>
-            <td>{{ contato.id }}</td>
-            <td>{{ contato.nome }}</td>
-            <td>{{ contato.email }}</td>
-            <td>{{ contato.assunto }}</td>
-            <td>{{ contato.mensagem }}</td>
-            <td>
-                {% if contato.data_hora %}
-                    {{ contato.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}
+    <div class="container">
+        <h1>Mensagens Recebidas</h1>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Assunto</th>
+                    <th>Mensagem</th>
+                    <th>Data e Hora</th>
+                </tr>
+                {% for contato in contatos %}
+                <tr>
+                    <td>{{ contato.id }}</td>
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.assunto }}</td>
+                    <td>{{ contato.mensagem }}</td>
+                    <td>
+                        {% if contato.data_hora %}
+                            {{ contato.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}
+                        {% else %}
+                            Não informado
+                        {% endif %}
+                    </td>
+                </tr>
                 {% else %}
-                    Não informado
-                {% endif %}
-            </td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="6">Nenhuma mensagem encontrada.</td>
-        </tr>
-        {% endfor %}
-    </table>
+                <tr>
+                    <td colspan="6" class="no-messages">Nenhuma mensagem encontrada.</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </body>
 </html>
+
 
 

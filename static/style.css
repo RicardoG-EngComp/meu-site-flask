@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* Cabe�alho */
+/* Cabeçalho */
 header {
     background-color: #007BFF;
     color: white;
@@ -28,7 +28,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Conte�do principal */
+/* Conteudo principal */
 main {
     padding: 20px;
 }
@@ -99,48 +99,53 @@ main {
 }
 
 
+/* Contêiner centralizado */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
 /* Tabela */
 table {
-    width: 90%;
-    margin: 20px auto;
+    width: 100%;
     border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
+    margin-top: 20px;
 }
 
 table th, table td {
-    padding: 12px 15px;
-    text-align: left;
-}
-
-table th {
-    background-color: #007BFF;
-    color: white;
-    font-weight: bold;
-}
-
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-table tr:hover {
-    background-color: #d9edf7;
-}
-
-table td {
-    border-bottom: 1px solid #ddd;
-}
-
-table th:first-child,
-table td:first-child {
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
 }
 
-table th:last-child,
-table td:last-child {
-    text-align: left;
+table th {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mensagem alternativa */
+.no-messages {
+    text-align: center;
+    padding: 20px;
+    color: #666;
 }
 
 /* Responsividade */
