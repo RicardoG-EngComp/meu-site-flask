@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import logging
+import sys
+import io
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta'
@@ -12,6 +14,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 # Modelo do Banco de Dados
 class Contato(db.Model):
